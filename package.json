@@ -1,0 +1,21 @@
+{
+  "name": "grouperDXPassthrough",
+  "version": "1.0.0",
+  "description": "Lambda functions to query Grouper API",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "sls deploy --stage dev",
+    "deploy:production": "NODE_ENV=production sls deploy --stage production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@osu-wams/grouper": "0.0.8"
+  },
+  "devDependencies": {
+    "serverless": "^2.62.0",
+    "serverless-webpack": "^5.5.4",
+    "webpack": "^5.58.2"
+  },
+  "author": "Alex Ruef",
+  "license": "ISC"
+}

@@ -1,0 +1,12 @@
+.serverless
+.webpack
+node_modules
+.env.production
+.env.stage
+.env.development
+.env.dev
+env.*
+coverage
+.DS_Store
+yarn-error.log
+report.*.json

@@ -1,0 +1,67 @@
+service: grouperDXPassthrough
+
+frameworkVersion: '2'
+useDotenv: true
+
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+  region: us-west-2
+  environment:
+    GROUPER_HOST: ${env:GROUPER_HOST}
+    GROUPER_USERNAME: ${env:GROUPER_USERNAME}
+    GROUPER_PASSWORD: ${env:GROUPER_PASSWORD}
+  vpc:
+    securityGroupIds:
+      - ${env:SECURITY_GROUP_ID}
+      #- Type: 'AWS::EC2::SecurityGroup'
+        #Properties:
+          #GroupName: ${self:service}-${env:ENV, 'development'}-lambda
+          #GroupDescription: Allow all outbound traffic, no inbound
+          #SecurityGroupIngress:
+            #- IpProtocol: -1
+              #CidrIp: 127.0.0.1/32
+          #VpcId:
+            #Type: AWS::EC2::VPC
+            #Properties:
+              #CidrBlock: 10.0.0.0/16
+    subnetIds:
+      - ${env:SUBNET_ID_A}
+      - ${env:SUBNET_ID_B}
+      - ${env:SUBNET_ID_C}
+      #- Type: AWS::EC2::Subnet
+        #Properties:
+          #AvailabilityZone: us-west-2a
+          #CidrBlock: 10.0.1.0/24
+          #VpcId:
+            #Type: AWS::EC2::VPC
+            #Properties:
+              #CidrBlock: 10.0.0.0/16
+      #- Type: AWS::EC2::Subnet
+        #Properties:
+          #AvailabilityZone: us-west-2b
+          #CidrBlock: 10.0.2.0/24
+          #VpcId:
+            #Type: AWS::EC2::VPC
+            #Properties:
+              #CidrBlock: 10.0.0.0/16
+      #- Type: AWS::EC2::Subnet
+        #Properties:
+          #AvailabilityZone: us-west-2c
+          #CidrBlock: 10.0.3.0/24
+          #VpcId:
+            #Type: AWS::EC2::VPC
+            #Properties:
+              #CidrBlock: 10.0.0.0/16
+
+functions:
+  hasMember:
+    handler: ./src/index.hasMember
+
+custom:
+  webpack:
+    includeModules: true
