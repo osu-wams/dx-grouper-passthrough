@@ -9,10 +9,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@osu-wams/grouper": "0.0.8"
+    "@osu-wams/grouper": "0.0.10"
   },
   "devDependencies": {
-    "serverless": "^2.66.1",
+    "serverless": "^3.17.0",
     "serverless-webpack": "^5.5.5",
     "webpack": "^5.64.1"
   },
